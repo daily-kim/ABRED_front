@@ -18,6 +18,7 @@ export const StepBoxBText = {
 export interface PrepriceInfo {
   price: number;
   list: {
+    areas: number[];
     prices: number[];
     years: number[];
   };
@@ -30,6 +31,7 @@ export interface PrepriceInfo {
 export interface PostpriceInfo {
   price: number;
   list: {
+    areas: number[];
     prices: number[];
     years: number[];
   };
@@ -44,17 +46,17 @@ export interface PostpriceInfo {
   };
 }
 
-export const getPrepriceInfo = async (): Promise<PrepriceInfo> => {
-  const price = await getPreprice();
-  const list = await getPresim();
-  const change = await getPrepriceList();
+export const getPrepriceInfo = async (id: string): Promise<PrepriceInfo> => {
+  const price = await getPreprice(id);
+  const list = await getPresim(id);
+  const change = await getPrepriceList(id);
   return { price, list, change };
 };
 
 export const getPostpriceInfo = async (id: string): Promise<PostpriceInfo> => {
-  const price = await getPostprice();
-  const list = await getPostsim();
-  const change = await getPostpriceList();
+  const price = await getPostprice(id);
+  const list = await getPostsim(id);
+  const change = await getPostpriceList(id);
   const model = await getModelFeature(id);
   return { price, list, change, model };
 };

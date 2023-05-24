@@ -22,7 +22,7 @@ const StepBoxC = ({ id, step }: { id: string; step: string }) => {
   const [postprice, setPostprice] = useState<PostpriceInfo | null>(null);
 
   const asyncWrapper = async () => {
-    setPreprice(await getPrepriceInfo());
+    setPreprice(await getPrepriceInfo(id));
     setPostprice(await getPostpriceInfo(id));
   };
 
