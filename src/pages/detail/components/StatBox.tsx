@@ -37,8 +37,8 @@ const StatBox = () => {
       if (type == "doughnut") return statInfo.prposArea_count;
       else return statInfo.ladUseSittnNm_count;
     } else if (statOption == "지가변동") {
-      if (type == "doughnut") return null;
-      else return null;
+      if (type == "doughnut") return statInfo.price_change_count;
+      else return statInfo.avgprice_by_years;
     } else {
       if (type == "doughnut") return null;
       else return null;
@@ -81,7 +81,7 @@ const StatBox = () => {
           </StatWrapper>
           <StatWrapper>
             <MediumText size={13}>
-              {getChartTitle("line") ?? `연도별 ${statOption} 변동`}
+              {getChartTitle("line") ?? `연도별 ${statOption} `}
             </MediumText>
             <ChartContainer>
               <DoughnutChart

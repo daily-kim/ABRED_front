@@ -29,7 +29,12 @@ const IssueBox = () => {
 
   const setIssue = (id: number) => {
     const targetIssue = issues.find((issue) => issue.id == id);
-    dispatch(updateIssue({ id, summary: targetIssue.gpt_summary }));
+    dispatch(
+      updateIssue({
+        id,
+        summary: `[${targetIssue.gpt_score}]\n${targetIssue.gpt_summary}`,
+      })
+    );
   };
 
   useEffect(() => {
