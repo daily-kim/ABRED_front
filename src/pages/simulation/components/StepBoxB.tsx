@@ -26,7 +26,7 @@ const StepBoxB = ({ id, step }: { id: string; step: string }) => {
   const [postprice, setPostprice] = useState<PostpriceInfo | null>(null);
 
   const asyncWrapper = async () => {
-    setPreprice(await getPrepriceInfo());
+    setPreprice(await getPrepriceInfo(id));
     setPostprice(await getPostpriceInfo(id));
   };
 
@@ -60,6 +60,7 @@ const StepBoxB = ({ id, step }: { id: string; step: string }) => {
               {show && (
                 <ListTable
                   title="보유 아파트와 유사 부동산 목록"
+                  areas={preprice.list.areas}
                   prices={preprice.list.prices}
                   years={preprice.list.years}
                 />
@@ -117,6 +118,7 @@ const StepBoxB = ({ id, step }: { id: string; step: string }) => {
                   {show && (
                     <ListTable
                       title="희망 아파트와 유사 부동산 목록"
+                      areas={postprice.list.areas}
                       prices={postprice.list.prices}
                       years={postprice.list.years}
                     />
@@ -156,10 +158,10 @@ const StepBoxB = ({ id, step }: { id: string; step: string }) => {
                       .length * -1
                   )}
                 />
-                <DoughnutContainer
+                {/* <DoughnutContainer
                   labels={postprice.model.labels}
                   data={postprice.model.data}
-                />
+                /> */}
               </StepBoxLayout>
             </>
           )}

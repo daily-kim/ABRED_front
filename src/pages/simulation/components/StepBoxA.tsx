@@ -9,19 +9,23 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   updateDong,
   updateHo,
+  updateDongHo,
   updateSize,
   updateStep,
 } from "../../../states/simulationSlice";
-import { getDongHo, getSize } from "../../../apis/simulation";
+import { getDongHo, getSize} from "../../../apis/simulation";
 import { RootState } from "../../../states/store";
 
 const StepBoxA = ({ id, step }: { id: string; step: string }) => {
   const dispatch = useDispatch();
 
   const asyncWrapper = async () => {
-    const newDongHoList = await getDongHo();
+    const newDongHoList = await getDongHo(id);
+    // const newDongList = await getDong(id);
+    // const newHoList = await getHo(id);
     const newSizeList = await getSize(id);
-    setDongList(newDongHoList.dong);
+
+    setDongList(newDongHoList.dong)
     dispatch(updateDong({ dong: newDongHoList.dong[0] }));
 
     setHoList(newDongHoList.ho);
@@ -29,6 +33,7 @@ const StepBoxA = ({ id, step }: { id: string; step: string }) => {
 
     setSizeList(newSizeList);
     dispatch(updateSize({ size: newSizeList[0] }));
+
   };
 
   useEffect(() => {
@@ -37,6 +42,7 @@ const StepBoxA = ({ id, step }: { id: string; step: string }) => {
 
   const [dongList, setDongList] = useState<string[]>([]);
   const [hoList, setHoList] = useState<string[]>([]);
+  // const [dongho, setDongHo] = useState<{dong: string[], ho: string[]}>({dong: [], ho: []});
   const [sizeList, setSizeList] = useState<number[]>([]);
 
   const dong = useSelector((state: RootState) => state.simulation.dong);
