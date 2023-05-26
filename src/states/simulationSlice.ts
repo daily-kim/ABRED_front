@@ -21,11 +21,6 @@ const simulation = createSlice({
       const { ho } = action.payload;
       state.ho = ho;
     },
-    updateDongHo: (state, action: PayloadAction<{ dong: string, ho: string }>) => {
-      const { dong, ho } = action.payload;
-      state.dong = dong;
-      state.ho = ho;
-    },
     updateBuildPrice: (state, action: PayloadAction<{ price: number }>) => {
       const { price } = action.payload;
       state.price.build = price;
@@ -41,7 +36,6 @@ export const {
   updateSize,
   updateDong,
   updateHo,
-  updateDongHo,
   updateStep,
   updateBuildPrice,
   updateContributePrice
